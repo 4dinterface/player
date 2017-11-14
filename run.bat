@@ -1,0 +1,1 @@
+c:\Users\4dinterface\AppData\Roaming\npm\http-server.cmd 

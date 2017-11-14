@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+
+    <link rel="stylesheet" href="jquery-ui.css">
+    <script type="text/javascript" src="./dependencies/jquery/jquery-1.12.0.js"></script>
+
+    <link rel="stylesheet" href="player.css">
+    <script type="text/javascript" src="./dependencies/js/utils.js"></script>
+    <!--<script type="text/javascript" src="./flashphoner.js"></script> -->
+    <!--<script type="text/javascript" src="./player.js"></script>-->
+    <script type="text/javascript" src="./lib/StreamPlayer.js"></script>    
+  </head>
+  <body >
+    <div class="fp-remoteVideo">
+        <div class="display" id="remoteVideo">
+            <i id="preloader" class="fa fa-spinner fa-pulse fa-3x fa-fw" aria-hidden="true" style="position: absolute; top: 43%; left: 47.5%;"></i>
+        </div>
+    </div>
+    
+    <!--<script src="sldp-v1.4.1.min.js"></script>-->
+    <!--<script src="./lib/StreamPlayer.js"></script>-->
+    <button id="clickme">Click Me</button>
+    
+    <script>
+      var wsp = new WhenSpeakStreamer({
+        width:"300px",
+        height:"200px",
+
+        //протоколы
+
+        //srcProtocols:["FlashPhoner:1"],   // порядок переключения протоков в остальных браузерах 
+        //srcProtocolsOldSafary:["hls:5", "FlashPhoner:1"],  // порядок смены протоколов в старых safary и IOS safary
+        //srcProtocolsOldSafary:["hls:1","FlashPhoner:1"],  // порядок смены протоколов в старых safary и IOS safary
+        //srcProtocols:["ws:1", "FlashPhoner:1"],   // порядок переключения протоков в остальных браузерах 
+        srcProtocolsOldSafary:["hls:1"],  // порядок смены протоколов в старых safary и IOS safary
+        srcProtocols:["hls:1"],   // порядок переключения протоков в остальных браузерах 
+
+        //источники для разных типов
+        sources:{
+          ws: ["wss://edcrunch.whenspeak.ru:4443/live"],
+          hls: ["https://edcrunch.whenspeak.ru:4443/live"]
+        },
+
+        onTrouble: function(){
+
+        }
+      });
+
+      wsp.init("rtmp_44767");
+      
+      document.getElementById("clickme").addEventListener("click", function(){
+        wsp.playstop();
+      });
+          
+    </script>
+  </body>
+</html>
